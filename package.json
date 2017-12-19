@@ -1,0 +1,11 @@
+{
+  "name": "vc-selection-list",
+  "version": "0.1.0",
+  "description": "Selection List component",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "RebelCode",
+  "license": "ISC"
+}
