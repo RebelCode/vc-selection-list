@@ -13,6 +13,9 @@ export function CfSelectionList (Repeater) {
              * Help repeater to emit v-model changing when using native selects.
              * We need to implement this because of Vue's render() limitation.
              *
+             * This is necessary because when using a render() function, Vue
+             * does not automatically handle input events.
+             *
              * @see https://vuejs.org/v2/guide/render-function.html#v-model
              */
             getRepeaterRootOptions () {
@@ -38,7 +41,7 @@ export function CfSelectionList (Repeater) {
              * Special repeater method, that enable
              * us to bypass child methods to repeating items.
              *
-             * @return {{isItemSelected: *}}
+             * @return {object} Methods available in repeating items
              */
             getRepeatedSlotProps () {
                 return {
@@ -48,14 +51,32 @@ export function CfSelectionList (Repeater) {
                 }
             },
 
+            /**
+             * Handle user's click on item
+             *
+             * @param {object} item   Item from collection that user clicked on
+             */
             select (item) {
                 this.$emit('input', this._select(item, this.value))
             },
 
+            /**
+             * Check item is selected
+             *
+             * @param {object} item   Item from collection
+             * @return {boolean}
+             */
             isItemSelected (item) {
-                return this._isItemSelected(item, this.value)
+                return !!this._isItemSelected(item, this.value)
             },
 
+            /**
+             * Get item's key. This is required for using with native select
+             * because we need to pass value to select's options.
+             *
+             * @param {object} item   Item from collection
+             * @return {*}
+             */
             getKey (item) {
                 return this.collection._keyGetter(item)
             },
@@ -63,30 +84,28 @@ export function CfSelectionList (Repeater) {
             /**
              * Check given item is selected
              *
-             * @param item
-             * @param currentValue
-             * @return {boolean}
+             * @param {object} item Item from collection that we are checking
+             * @param {Array} currentValue Current value of selection list
+             * @return {boolean} Is item selected
+             *
              * @private
              */
             _isItemSelected (item, currentValue) {
-                if (!this.multiple) {
-                    return currentValue === this.getKey(item)
-                }
-
                 return currentValue.indexOf(this.getKey(item)) > -1
             },
 
             /**
              * Select item before emitting new model
              *
-             * @param item
-             * @param currentValue
-             * @return {*}
+             * @param {object} item Item from collection that is selected
+             * @param {Array} currentValue Current value of selection list
+             * @return {Array} New value for selection list component
+             *
              * @private
              */
             _select (item, currentValue) {
                 if (!this.multiple) {
-                    return this.getKey(item)
+                    return [this.getKey(item)]
                 }
 
                 var i = currentValue.indexOf(this.getKey(item))
@@ -104,10 +123,11 @@ export function CfSelectionList (Repeater) {
              *
              * @param el
              * @return {*}
+             *
              * @private
              */
             _getNativeSelectValue (el) {
-                if (!this.multiple) return el.value
+                if (!this.multiple) return [el.value]
 
                 let result = []
                 let options = el && el.options
