@@ -1,7 +1,33 @@
+/**
+ * Vue component that extend Repeater component and used for
+ * creating components that can be used for selection item
+ * (or items) from the passed collection.
+ *
+ * @since [*next-version*]
+ *
+ * @param {CfRepeater} Repeater Repeater instance.
+ * @returns {VueComponent}
+ * @constructor
+ */
 export function CfSelectionList (Repeater) {
     return Repeater.extend({
         props: {
+            /**
+             * v-model value.
+             *
+             * @since [*next-version*]
+             *
+             * @property {Array}
+             */
             value: {},
+
+            /**
+             * Is current selection list multiple.
+             *
+             * @since [*next-version*]
+             *
+             * @property {Boolean}
+             */
             multiple: {
                 type: Boolean,
                 default: false
@@ -17,6 +43,10 @@ export function CfSelectionList (Repeater) {
              * does not automatically handle input events.
              *
              * @see https://vuejs.org/v2/guide/render-function.html#v-model
+             *
+             * @since [*next-version*]
+             *
+             * @return {object}
              */
             getRepeaterRootOptions () {
                 if (this.wrap === 'select') {
@@ -41,6 +71,8 @@ export function CfSelectionList (Repeater) {
              * Special repeater method, that enable
              * us to bypass child methods to repeating items.
              *
+             * @since [*next-version*]
+             *
              * @return {object} Methods available in repeating items
              */
             getRepeatedSlotProps () {
@@ -54,6 +86,8 @@ export function CfSelectionList (Repeater) {
             /**
              * Handle user's click on item
              *
+             * @since [*next-version*]
+             *
              * @param {object} item   Item from collection that user clicked on
              */
             select (item) {
@@ -63,7 +97,9 @@ export function CfSelectionList (Repeater) {
             /**
              * Check item is selected
              *
-             * @param {object} item   Item from collection
+             * @since [*next-version*]
+             *
+             * @param {object} item Item from collection
              * @return {boolean}
              */
             isItemSelected (item) {
@@ -74,7 +110,9 @@ export function CfSelectionList (Repeater) {
              * Get item's key. This is required for using with native select
              * because we need to pass value to select's options.
              *
-             * @param {object} item   Item from collection
+             * @since [*next-version*]
+             *
+             * @param {object} item Item from collection
              * @return {*}
              */
             getKey (item) {
@@ -83,6 +121,8 @@ export function CfSelectionList (Repeater) {
 
             /**
              * Check given item is selected
+             *
+             * @since [*next-version*]
              *
              * @param {object} item Item from collection that we are checking
              * @param {Array} currentValue Current value of selection list
@@ -96,6 +136,8 @@ export function CfSelectionList (Repeater) {
 
             /**
              * Select item before emitting new model
+             *
+             * @since [*next-version*]
              *
              * @param {object} item Item from collection that is selected
              * @param {Array} currentValue Current value of selection list
@@ -120,6 +162,8 @@ export function CfSelectionList (Repeater) {
 
             /**
              * Get select value, also can get multiple select value
+             *
+             * @since [*next-version*]
              *
              * @param el
              * @return {*}
