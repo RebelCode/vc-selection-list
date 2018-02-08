@@ -31,10 +31,10 @@ let entries = {
         }
     },
     'default': {
-        entry: "./tests/e2e/app.js",
+        entry: "./src/index.js",
         output: {
-            path: __dirname + "/build/js",
-            filename: "app.min.js",
+            path: __dirname + "/dist",
+            filename: "vc-selection-list.js",
             libraryTarget: 'umd'
         },
         resolve: {

@@ -1,12 +1,13 @@
 {
-  "name": "vc-selection-list",
+  "name": "@rebelcode/vc-selection-list",
   "version": "0.1.0",
   "description": "Selection List component",
-  "main": "src/index.js",
+  "main": "dist/vc-selection-list.js",
   "scripts": {
     "dev": "cross-env ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "e2e": "cross-env testcafe all tests/e2e/*.test.js --app \"NODE_ENV=e2e ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port=8082\" --app-init-delay 10000",
-    "production": "cross-env NODE_ENV=production webpack"
+    "build": "cross-env NODE_ENV=production webpack",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -19,9 +20,9 @@
     "vue": "^2.5.13",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7",
-    "std-lib": "git://github.com/RebelCode/std-lib.git#075ac19a127309f70b755e5ca59afdde9ddb2957",
-    "vc-repeater": "git://github.com/RebelCode/vc-repeater.git#7c013b30bda7d53bffacc2810113d4b7475ddf95"
+    "@rebelcode/std-lib": "^0.1.1",
+    "@rebelcode/vc-repeater": "^0.1.0"
   },
   "author": "RebelCode",
-  "license": "ISC"
+  "license": "MIT"
 }

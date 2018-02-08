@@ -1,4 +1,6 @@
 # Selection List Component
+[![npm (scoped)](https://img.shields.io/npm/v/@rebelcode/vc-selection-list.svg)]()
+
 Selection List is a Vue component that extend Repeater component from [here](https://github.com/RebelCode/vc-repeater) and used for creating components that can be used for selection item (or items) from the passed collection.
 
 ## Usage

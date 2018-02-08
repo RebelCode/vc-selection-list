@@ -1,7 +1,7 @@
 import {CfSelectionList} from './../../src/index';
 
-import {FunctionalCollection} from './../../node_modules/std-lib/src/FunctionalCollection'
-import {CfRepeater} from './../../node_modules/vc-repeater/src/index';
+import {FunctionalCollection} from '@rebelcode/std-lib'
+import {CfRepeater} from '@rebelcode/vc-repeater';
 
 import Vue from 'vue';
 
